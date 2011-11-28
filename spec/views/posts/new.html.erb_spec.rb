@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "posts/new.html.erb" do
   before(:each) do
-    assign(:post, "Post.new")
+    assign(:post, Post.new)
   end
 
   it "should have a form with id #new_post" do
