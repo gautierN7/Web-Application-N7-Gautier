@@ -35,19 +35,19 @@ describe "CreatePosts" do
     
   end
 
-  #describe "after a new post has been created" do
-  #  before(:each) do
-  #    visit posts_path
-  #    click_link("Create a new Post")
-  #    current_path.should == new_post_path
-  #    fill_in("Title", :with => "Post 1")
-  #    click_button("Create Post")
-  #    current_path.should == posts_path
-  #  end
+  describe "after a new post has been created" do
+    before(:each) do
+      visit posts_path
+      click_link("Create a new Post")
+      current_path.should == new_post_path
+      fill_in("Title", :with => "Post 1")
+      click_button("Create Post")
+      current_path.should == posts_path
+    end
 
-  #  it "should display the new post in the list" do
-  #    page.should have_content("post 1")
-  #  end
-  #end
+    it "should display the new post in the list" do
+      page.should have_content("Post 1")
+    end
+  end
       
 end

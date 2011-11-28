@@ -1,4 +1,5 @@
 Blog::Application.routes.draw do
+  root :to => 'posts#index'
   get '/posts/new',  :controller => :posts,  :action => :new,    :as => "new_post"
   get '/posts',      :controller => :posts,  :action => :index,  :as => "posts"
   post 'posts',      :controller => :posts,  :action => :create

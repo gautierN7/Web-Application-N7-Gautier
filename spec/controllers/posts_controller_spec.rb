@@ -24,5 +24,21 @@ describe PostsController do
       assigns(:posts).should == @posts
     end
   end
+  
+  describe "POST create" do
+   before(:each) do
+     @new_post_params = {"post" => {"title" => "post_title", "body" => "post_body"}}
+     Post.stub(:create) {true}
+   end
+   it "should create a new Post with the given params" do
+     Post.should_receive(:create).with(@new_post_params["post"])
+     post :create, @new_post_params
+   end
+
+   it "should redirect to posts_path" do
+     post :create, @new_post_params
+     response.should redirect_to posts_path
+   end
+  end
 
 end
