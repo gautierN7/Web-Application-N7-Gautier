@@ -3,7 +3,7 @@
 
 <ul id='posts'>
   <% @posts.each do |post| %>
-    <li id='post_<%= post.id %>'><%= post.title %><%= post.body %></li>
+    <li id='post_<%= post.id %>'><%= post.title %><%= post.body %>><%= link_to "Delete this Post", post, :method => 'delete'%></li>
   <% end %>
 </ul>
 

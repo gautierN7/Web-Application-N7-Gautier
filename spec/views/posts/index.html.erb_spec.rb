@@ -23,4 +23,9 @@ describe "posts/index.html.erb" do
   it "should display a link to create a new post" do
     rendered.should have_link("Create a new Post", :href => new_post_path)
   end
+  it "should display each post in the list with a delete link" do
+   @posts.each do |post|
+      rendered.should have_selector("li#post_#{post.id} a", :text => "Delete this Post")
+   end
+  end
 end

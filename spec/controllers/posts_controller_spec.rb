@@ -40,5 +40,27 @@ describe PostsController do
      response.should redirect_to posts_path
    end
   end
+  
 
+  describe "DELETE destroy" do
+    before(:each) do
+      @post = stub_model(Post, :id => 4)
+      @post.stub(:destroy){true}
+      Post.stub(:find){@post}
+    end
+    it "should redirect to the posts list" do
+      delete :destroy, {:id => @post.id }
+      response.should redirect_to posts_path
+    end
+
+    it "should search the post" do
+      Post.should_receive(:find).with(@post.id.to_s).and_return(@post)
+      delete :destroy, {:id => @post.id }
+    end
+
+    it "should destroy the post" do
+      @post.should_receive(:destroy)
+      delete :destroy, {:id => @post.id }
+    end
+  end
 end

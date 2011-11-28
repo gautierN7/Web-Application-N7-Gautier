@@ -13,7 +13,7 @@ describe "Listposts" do
     it "should display each post title and body" do
       @posts.each{|p| 
       page.should have_content p.title
-      #page.should have_content p.body      
+      page.should have_content p.body      
       }
 
     end
