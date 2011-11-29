@@ -63,4 +63,27 @@ describe PostsController do
       delete :destroy, {:id => @post.id }
     end
   end
+  
+  
+  #------ Gestion des titres ------#
+  #describe "GET 'index'" do
+  #  it "should be a succes" do
+  #    get 'index' 
+  #    response.should be_succes
+  #  end
+  #  it "should have the title Accueil" do
+  #    get 'index'
+  #    response.should have_selector("title",:content => "Acc")
+  #  end
+  #end  
+  #describe "POST create" do
+  #  it "should be a succes" do
+  #    get 'create'
+  #    response.should be_success
+  #  end
+  #  it "should have the title Nouveau Post" do
+  #    get 'create'
+  #    response.should have_selector("title",:content =>"Nouveau Post")
+  #  end
+  #end  
 end

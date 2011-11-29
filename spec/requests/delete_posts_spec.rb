@@ -22,6 +22,7 @@ describe "DeletePosts" do
         click_on "Delete this Post"
       end
       page.should_not have_content(@post.title)
+      page.should_not have_content(@post.body)
     end
   end
 end
