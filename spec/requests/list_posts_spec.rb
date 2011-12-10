@@ -3,9 +3,9 @@ require 'spec_helper'
 describe "Listposts" do
 
   before(:each) do
-    @posts = [Post.create(:title => 'title1', :body => "body1"),
-              Post.create(:title => 'title2', :body => "body2"),
-              Post.create(:title => 'title3', :body => "body3")]
+    @posts = [Post.create(:title => 'post1', :body => "body1"),
+              Post.create(:title => 'post2', :body => "body2"),
+              Post.create(:title => 'post3', :body => "body3")]
     visit posts_path
   end
     

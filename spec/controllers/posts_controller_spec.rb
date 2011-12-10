@@ -64,6 +64,24 @@ describe PostsController do
     end
   end
   
+  #------ Show test ------#
+  describe "GET show" do
+    before(:each) do
+      @post = stub_model(Post, :id => 2310, :title => '2310', :body => "2310")
+      @post.stub(:show){true}
+      Post.stub(:find){@post}
+    end
+    it "should get the post from the database" do
+      Post.should_receive(:find)
+      get :show, {:id => @post.id }
+    end
+    it "should assigns the posts to @post" do
+      get :show, {:id => @post.id }
+      assigns(:post).should == @post
+    end
+  end
+  
+  
   
   #------ Gestion des titres ------#
   #describe "GET 'index'" do

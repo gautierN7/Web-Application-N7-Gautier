@@ -2,16 +2,15 @@ require 'spec_helper'
 
 describe "DeletePosts" do
   before(:each) do
-    @posts = [Post.create(:title => 'Post1', :body => "body1"),
-              Post.create(:title => 'Post2', :body => "body2"),
-              Post.create(:title => 'Post3', :body => "body3")]
+    @posts = [Post.create(:title => 'Chapitre1', :body => "Abody1"),
+              Post.create(:title => 'Chapitre2', :body => "Abody2"),
+              Post.create(:title => 'Chapitre3', :body => "Abody3")]
     @post = @posts[1]
     visit posts_path
   end
 
   describe "a post in the list" do
     it "should have a delete button" do
-      visit posts_path
       @posts.each{|post| page.should have_link("Delete this Post", :href => post_path(post), :method => 'delete')}
     end
   end

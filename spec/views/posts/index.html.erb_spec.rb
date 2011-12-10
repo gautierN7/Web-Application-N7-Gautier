@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe "posts/index.html.erb" do
   before(:each) do
-    @posts = [stub_model(Post, :id => 1, :title => 'post1', :body => "body1"),
-              stub_model(Post, :id => 2, :title => 'post2', :body => "body2"),
-              stub_model(Post, :id => 3, :title => 'post3', :body => "body3")]
+    @posts = [stub_model(Post, :id => 1, :title => 'testindex1', :body => "body1"),
+              stub_model(Post, :id => 2, :title => 'testindex2', :body => "body2"),
+              stub_model(Post, :id => 3, :title => 'testindex3', :body => "body3")]
     assign(:posts, @posts)
     render
   end
@@ -26,6 +26,11 @@ describe "posts/index.html.erb" do
   it "should display each post in the list with a delete link" do
    @posts.each do |post|
       rendered.should have_selector("li#post_#{post.id} a", :text => "Delete this Post")
+   end
+  end
+  it "should display each post in the list with a show link" do
+   @posts.each do |post|
+      rendered.should have_selector("li#post_#{post.id} a", :text => "Show this Post")
    end
   end
 end

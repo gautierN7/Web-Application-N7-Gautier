@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Blog</title>
-  <%= stylesheet_link_tag    "custom.css" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<p> SALUT </p>
-<%= yield %>
-
-</body>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tag %>   
+    <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
+    <%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
+    <%= stylesheet_link_tag 'custom', :media => 'screen' %>
+    <%= javascript_include_tag "application" %>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <%= image_tag("blog1.jpg", :alt => "Blog img", :width => "300", :height => "150", :class => "round") %>
+        <nav class="round">
+          <ul>
+            <li><%= link_to "Home", '#' %></li>
+            <li><%= link_to "Sign In", '#' %></li>
+          </ul>
+        </nav>
+      </header>
+      <section class="round">
+        <%= yield %>
+      </section>
+    </div>
+  </body>
 </html>
+
