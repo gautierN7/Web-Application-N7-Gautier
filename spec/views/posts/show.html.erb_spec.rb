@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "posts/show.html.erb" do
   before(:each) do
-    @posts = [stub_model(Post, :id => 1, :title => 'testshow1', :body => "body1")]
+    @posts = [stub_model(Post, :id => 1, :title => 'tesatshow1', :body => "body1")]
     @post = @posts[0]
     #assign(:posts, @posts)
     render

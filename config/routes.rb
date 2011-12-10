@@ -1,10 +1,13 @@
 Blog::Application.routes.draw do
   root :to => 'posts#index'
-  get '/posts/new',     :controller => :posts,  :action => :new,    :as => "new_post"
-  get '/posts',         :controller => :posts,  :action => :index,  :as => "posts"
-  post 'posts',         :controller => :posts,  :action => :create
-  get '/posts/:id',     :controller => :posts,  :action => :show, :as => "post" 
-  delete '/posts/:id',  :controller => :posts,  :action => :destroy
+  get '/posts/new',           :controller => :posts,         :action => :new,           :as => "new_post"
+  get '/posts',               :controller => :posts,         :action => :index,         :as => "posts"
+  post 'posts',               :controller => :posts,         :action => :create
+  get '/posts/:id',           :controller => :posts,         :action => :show,          :as => "post" 
+  get '/posts/edit/:id',     :controller => :posts,          :action => :edit,          :as => "edit_post"
+  put '/posts/:id',           :controller => :posts,         :action => :update,         :as => "update"
+  delete '/posts/:id',        :controller => :posts,         :action => :destroy        
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

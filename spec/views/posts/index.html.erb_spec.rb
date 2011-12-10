@@ -33,4 +33,9 @@ describe "posts/index.html.erb" do
       rendered.should have_selector("li#post_#{post.id} a", :text => "Show this Post")
    end
   end
+  it "should display each post in the list with a edit link" do
+   @posts.each do |post|
+      rendered.should have_selector("li#post_#{post.id} a", :text => "Edit this Post")
+   end
+  end
 end

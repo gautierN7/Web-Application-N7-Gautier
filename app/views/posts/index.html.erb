@@ -6,6 +6,7 @@
     <li id='post_<%= post.id %>'>
         <%= post.title %><%= post.body %>
         <%= link_to "Show this Post", post, :method => 'get'%>
+        <%= link_to "Edit this Post", edit_post_path(post.id), :method => 'get'%>
         <%= link_to "Delete this Post", post, :method => 'delete'%>
     </li>
   <% end %>

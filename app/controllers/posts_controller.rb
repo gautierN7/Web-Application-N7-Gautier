@@ -20,5 +20,19 @@ class PostsController < ApplicationController
     post.destroy
     redirect_to posts_path
   end
+  
+  def edit
+    @post = Post.find(params[:id])
+  end
+  
+  def update
+    @post = Post.find(params[:id])
+    # if ?
+       @post.update_attributes(params[:post])
+        redirect_to post_path(@post), notice: 'Post was successfully updated.'
+     # else ?
+     #   render action: "edit" ?
+     # end ?
 
+  end
 end

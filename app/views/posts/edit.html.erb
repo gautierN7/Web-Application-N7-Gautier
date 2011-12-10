@@ -1,0 +1,13 @@
+<h1>Posts#edit</h1>
+<p>Find me in app/views/posts/edit.html.erb</p>
+
+<%= form_tag(update_path(@post), :method => "put", :id => 'edit_post') do %>
+  <%= label_tag(:post_title, 'Title') %>
+  <%= text_field_tag('post[title]', @post.title) %>
+  <%= label_tag(:post_body, 'Body') %>
+  <%= text_field_tag('post[body]', @post.body) %>
+  <%= submit_tag("Update Post") %>
+
+<% end %>
+
+<%= button_to 'Back', root_path %>

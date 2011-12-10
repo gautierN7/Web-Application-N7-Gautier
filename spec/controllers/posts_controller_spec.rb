@@ -2,13 +2,8 @@ require 'spec_helper'
 
 describe PostsController do
 
-  describe "POST create" do
-    it "should redirect to the post list" do
-      post :create
-      response.should redirect_to posts_path
-    end
-  end
 
+  #------ Index test ------#
   describe "GET index" do
     before(:each) do
       @posts = [ :p1, :p2, :p3 ]
@@ -25,6 +20,7 @@ describe PostsController do
     end
   end
   
+  #------ Create test ------#
   describe "POST create" do
    before(:each) do
      @new_post_params = {"post" => {"title" => "post_title", "body" => "post_body"}}
@@ -39,9 +35,16 @@ describe PostsController do
      post :create, @new_post_params
      response.should redirect_to posts_path
    end
+  end  
+  
+  describe "POST create" do
+    it "should redirect to the post list" do
+      post :create
+      response.should redirect_to posts_path
+    end
   end
   
-
+  #------ Delete test ------#
   describe "DELETE destroy" do
     before(:each) do
       @post = stub_model(Post, :id => 4)
@@ -81,27 +84,33 @@ describe PostsController do
     end
   end
   
+  #------ Edit test ------#
+  describe "POST /edit" do
+    before(:each) do
+      @post = stub_model(Post, :id => 2310, :title => '2310', :body => "2310")
+      @post.stub(:edit){true}
+      Post.stub(:find){@post}
+    end
+    it "should get the post from the database" do
+      Post.should_receive(:find)
+      get :edit, {:id => @post.id }
+    end
+    it "should modify the post" do
+        @post.should_receive(:update_attributes)
+        put :update, {:id => @post.id }
+    end
+    it "should redirect to the post" do
+        put :update, {:id => @post.id }
+        response.should redirect_to post_path(@post.id)
+    end    
+  end
+  
+
+
+
   
   
-  #------ Gestion des titres ------#
-  #describe "GET 'index'" do
-  #  it "should be a succes" do
-  #    get 'index' 
-  #    response.should be_succes
-  #  end
-  #  it "should have the title Accueil" do
-  #    get 'index'
-  #    response.should have_selector("title",:content => "Acc")
-  #  end
-  #end  
-  #describe "POST create" do
-  #  it "should be a succes" do
-  #    get 'create'
-  #    response.should be_success
-  #  end
-  #  it "should have the title Nouveau Post" do
-  #    get 'create'
-  #    response.should have_selector("title",:content =>"Nouveau Post")
-  #  end
-  #end  
+  
+  
+ 
 end
