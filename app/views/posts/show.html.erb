@@ -11,6 +11,8 @@
   <b><%= label_tag(:post_body, 'Body') %></b>
   <%= @post.body %>
 </p>
+<%= button_to 'Create a new Comment', new_comment_path(@post.id), :method=>"get" %>
 <%= button_to 'Back', root_path %>
+
 
 

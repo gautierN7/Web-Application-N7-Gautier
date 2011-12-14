@@ -1,0 +1,14 @@
+<h1>Comments#new</h1>
+<p>Find me in app/views/comments/new.html.erb</p>
+
+
+<%= form_tag(post_path(@post.id), :method => "post", :id => 'new_comment') do %>
+  <%= label_tag(:comment_author, 'Author') %>
+  <%= text_field_tag('comment[author]') %>
+  <%= label_tag(:comment_body, 'Body') %>
+  <%= text_field_tag('comment[body]') %>
+  <%= submit_tag("Create Comment") %>
+
+<% end %>
+
+<%= button_to 'Back', post_path(@post.id), :method=>"get" %>

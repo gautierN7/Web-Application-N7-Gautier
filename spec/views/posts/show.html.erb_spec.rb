@@ -26,4 +26,9 @@ describe "posts/show.html.erb" do
     render
     rendered.should have_button("Back")
   end
+  
+  it "should have a create new comment button displaying" do
+    render
+    rendered.should have_button("Create a new Comment")
+  end
 end
