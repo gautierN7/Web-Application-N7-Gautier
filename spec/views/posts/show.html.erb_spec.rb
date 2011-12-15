@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe "posts/show.html.erb" do
   before(:each) do
-    @posts = [stub_model(Post, :id => 1, :title => 'tesatshow1', :body => "body1")]
-    @post = @posts[0]
-    #assign(:posts, @posts)
+    @posts = assign(:post, stub_model(Post, :id => 1, :title => 'tesatshow1', :body => "body1"))
     render
   end
   
@@ -26,9 +24,32 @@ describe "posts/show.html.erb" do
     render
     rendered.should have_button("Back")
   end
+
+  # Commentaire
+  before(:each) do
+    @post = assign(:post, stub_model(Post, :id => 1, :title => 'tesatshow1', :body => "body1"))
+    @comments = [Comment.create(:author => 'Barney', :body => "Legendary", :post_id => @post.id),
+                 Comment.create(:author => 'Marshall', :body => "Lily", :post_id => @post.id),
+                 Comment.create(:author => 'Ted', :body => "Robin",  :post_id => @post.id)]
+    assign(:comments, @comments)
+    render
+  end
+  
+  it "should display a list identified by 'comments'" do
+    rendered.should have_selector("ul#comments")
+  end
+  
+  it "should display each comment in the list with its author and its body" do
+    @comments.each do |comment|
+      rendered.should have_selector("ul#comments li#comment_#{comment.id}", :text => comment.author)
+      rendered.should have_selector("ul#comments li#comment_#{comment.id}", :text => comment.body)
+    end
+  end
   
   it "should have a create new comment button displaying" do
     render
     rendered.should have_button("Create a new Comment")
   end
+  
+
 end

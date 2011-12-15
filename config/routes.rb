@@ -11,6 +11,7 @@ Blog::Application.routes.draw do
 
   get '/posts/:id/comments/new',           :controller => :comments,         :action => :new,           :as => "new_comment"
   post '/posts/:id',                       :controller => :comments,         :action => :create
+  get '/posts/:id',               :controller => :comments,         :action => :index,          :as => "comments"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
