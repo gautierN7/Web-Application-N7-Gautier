@@ -51,5 +51,9 @@ describe "posts/show.html.erb" do
     rendered.should have_button("Create a new Comment")
   end
   
-
+  it "should display each post in the list with a delete link" do
+   @comments.each do |comment|
+      rendered.should have_selector("li#comment_#{comment.id} a", :text => "Delete this Comment")
+   end
+  end
 end

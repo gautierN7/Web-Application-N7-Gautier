@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe CommentsController do
-
+ #------ Create test ------#
   describe "Comment create" do
 	 before(:each) do
         @post = stub_model(Post, :id => 23)
@@ -21,6 +21,33 @@ describe CommentsController do
      end
   end
 
+  #------ Delete test ------#
+  describe "DELETE comment" do
+    before(:each) do
+      @post = stub_model(Post, :id => 23)
+      @comment = stub_model(Comment, :id => 27, :post_id => 23)
+      @comment.stub(:destroy){true}
+      Comment.stub(:find){@comment}
+      Post.stub(:create) {true}
+    end
+    it "should redirect to the comment list of the post" do
+    #  delete :destroy, {:id => @post.id, :post_id => @comment.id }
+    #  response.should redirect_to post_path(@post.id)
+    end
+
+    it "should search the comment" do
+    #  Comment.should_receive(:find).with(@comment.id.to_s).and_return(@comment)
+    #  delete :destroy, {:id => @post.id, :post_id => @comment.id }
+    end
+
+    it "should destroy the comment" do
+    #  @comment.should_receive(:destroy)
+    #  delete :destroy, {:id => @post.id, :post_id => @comment.id }
+    end
+  end
+  
+  
+  
 #  describe "GET index" do
 #    before(:each) do
 # 		@post = (stub_model(Post, :title => "YATAAAAAAAA", :body=>"Yopida"))
