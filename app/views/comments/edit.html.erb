@@ -1,0 +1,14 @@
+<h1>Comments#edit</h1>
+<p>Find me in app/views/comments/edit.html.erb</p>
+
+<%= form_tag(update_comment_path(@post.id, @comment.id), :method => "put", :id => 'edit_comment') do %>
+  <%= label_tag(:comment_author, 'Author') %>
+  <%= text_field_tag('comment[author]', @comment.author) %>
+  <%= label_tag(:comment_body, 'Body') %>
+  <%= text_field_tag('comment[body]', @comment.body) %>
+  <%= submit_tag("Update Comment") %>
+<% end %>
+
+<%= button_to 'Back', post_path(@post.id), :method => 'get' %>
+
+

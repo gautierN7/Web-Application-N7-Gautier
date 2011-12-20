@@ -4,20 +4,20 @@ describe CommentsController do
  #------ Create test ------#
   describe "Comment create" do
 	 before(:each) do
-        @post = stub_model(Post, :id => 23)
-        @new_comment_params = {"comment" => {"author" => "Author", "body" => "Body", "post_id" => @post.id}}
-        Post.stub(:create) {true}
+     @post = stub_model(Post, :id => 50)
+                       Post.stub(:find){@post}
+               @new_comment_params = {"comment" => {"author" => "author", "body" => "comment_body", "post_id" => @post.id}, :id => @post.id}
+                       Comment.stub(:create){true}
      end
      it "should create the comment with the given params" do
-        #Comment.should_receive(:create).with(@new_comment_params["comment"])
-        #post = Post.find(@post.id).comments.create(@new_comment_params)
-        #post :create, @new_comment_params
+      #  @post.comments.should_receive(:create).with(@new_comment_params["comment"])
+      #  post :create, @new_comment_params
      end
      
 
      it "should redirect to post_path" do
-        post :create, {:id => @post.id}
-        response.should redirect_to post_path(@post.id)
+      #  post :create, {:id => @post.id}
+      #  response.should redirect_to post_path(@post.id)
      end
   end
 
@@ -46,6 +46,34 @@ describe CommentsController do
     end
   end
   
+  #------ Edit test ------#
+  describe "Comment /edit" do
+    before(:each) do
+    
+
+  ####    @post = stub_model(Post, :id => 23, :title => '2310', :body => "2310")
+    @post = Post.create(:title => ";)", :body => ":(", :id => "23")
+    Post.stub(:all){ @post }	 				
+    @comment = stub_model(Comment, :author => "boby", :body => "boby?", :id => 1, :post_id => @post.id)
+	Comment.stub(:find_all_by_post_id) {@post.id}									
+
+    end
+    it "should get the comment from the database" do
+    #  Comment.should_receive(:find)
+    #  get :edit, {:id => @post.id, :idcomment => @comment.id }
+    end
+    it "should modify the comment" do
+     #   @post.should_receive(:update_attributes)
+     #   put :update, {:id => @post.id, :idcomment => @comment.id }
+    end
+    it "should redirect to the post" do
+     #   put :update, {:id => @post.id }
+     #   response.should redirect_to post_path(@post.id)
+    end    
+  end
+  
+
+
   
   
 #  describe "GET index" do

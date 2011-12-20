@@ -1,5 +1,7 @@
 Blog::Application.routes.draw do
 
+  get "comments/edit"
+
   root :to => 'posts#index'
   get '/posts/new',           :controller => :posts,         :action => :new,           :as => "new_post"
   get '/posts',               :controller => :posts,         :action => :index,         :as => "posts"
@@ -10,9 +12,13 @@ Blog::Application.routes.draw do
   delete '/posts/:id',        :controller => :posts,         :action => :destroy        
 
   get '/posts/:id/comments/new',           :controller => :comments,         :action => :new,           :as => "new_comment"
+  #test
+  get '/posts/:id',                        :controller => :comments,         :action => :index,           :as => "index_comment"
   post '/posts/:id',                       :controller => :comments,         :action => :create
   delete '/posts/:id/comments/:idcomment', :controller => :comments,         :action => :destroy,        :as => "delete_comment"    
-  
+  get '/posts/:id/comments/edit/:idcomment', :controller => :comments,       :action => :edit,          :as => "edit_comment"
+  put '/posts/:id/comments/:idcomment',                          :controller => :comments,       :action => :update,        :as => "update_comment"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

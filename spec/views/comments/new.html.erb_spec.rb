@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "comments/new.html.erb" do
   before(:each) do
   	@post = Post.create(:title => "Postzdzd11", :body => "blzdzddzdla")
-    assign(:comment, "Comment.new")
+    assign(:comment, Comment.new)
   end
 
   it "should have a form with id #new_comment" do

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def new
-        @post = Post.find(params[:id])
+       @post = Post.find(params[:id])
   end
   
   def create
@@ -16,5 +16,16 @@ class CommentsController < ApplicationController
       redirect_to post_path(post.id)
   end
   
-
+  def edit
+      @post = Post.find(params[:id])
+      @comment = @post.comments.find(params[:idcomment])
+  end
+  
+  def update
+  
+    @post = Post.find(params[:id])
+    @comment = @post.comments.find(params[:idcomment])
+    @comment.update_attributes(params[:comment])
+    redirect_to post_path(@post.id)
+  end
 end

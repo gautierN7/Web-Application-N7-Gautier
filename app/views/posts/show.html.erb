@@ -16,7 +16,9 @@
   <% @post.comments.each do |comment| %>
     <li id='comment_<%= comment.id %>'>
         <%= comment.author %> <%= comment.body %>
+        <%= link_to "Edit this Comment", edit_comment_path(@post.id, comment.id), :method => 'get'%>
         <%= link_to "Delete this Comment", delete_comment_path(@post.id, comment.id), :method => 'delete'%>
+
     </li>
   <% end %>
 </ul>
