@@ -1,15 +1,19 @@
 require 'spec_helper'
 
 describe CommentsController do
-include Devise::TestHelpers
+  include Devise::TestHelpers
+    before(:each) do
+      user = Factory.create(:user)
+      sign_in user
+    end
  #------ Create test ------#
   describe "Comment create" do
 	 before(:each) do
      @post = stub_model(Post, :id => 50)
-                       Post.stub(:find){@post}
-               @new_comment_params = {"comment" => {"author" => "author", "body" => "comment_body", "post_id" => @post.id}, :id => @post.id}
-                       Comment.stub(:create){true}
-     end
+     Post.stub(:find){@post}
+     @new_comment_params = {"comment" => {"author" => "author", "body" => "comment_body", "post_id" => @post.id}, :id => @post.id}
+     Comment.stub(:create){true}
+  end
      it "should create the comment with the given params" do
       #  @post.comments.should_receive(:create).with(@new_comment_params["comment"])
       #  post :create, @new_comment_params

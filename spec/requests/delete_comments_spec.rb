@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe "DeleteComments" do
   before(:each) do
+    @user = User.create!(:email => "gautier@aol.com", :password => "Azerty", :password_confirmation => "Azerty")
+    visit new_user_session_path  
+    fill_in("user_email", :with => @user.email)  
+    fill_in("user_password", :with => @user.password)
+    click_button("Sign in")
     @post = Post.create(:title => 'Wazup', :body => "Bouzincaaaa")
     @comments = [Comment.create(:author => 'Poux', :body => "1", :post_id => @post.id),
                  Comment.create(:author => 'McCaw', :body => "2", :post_id => @post.id),
@@ -21,6 +26,7 @@ describe "DeleteComments" do
       within("li", :text => @comment.author) do
         click_on "Delete this Comment"
       end
+      current_path.should == post_path(@post.id)
       page.should_not have_content(@comment.author)
       page.should_not have_content(@comment.body)
     end
