@@ -1,10 +1,14 @@
 require 'spec_helper'
 
 describe PostsController do
-
+  include Devise::TestHelpers
+    before(:each) do
+      user = Factory.create(:user)
+      sign_in user
+    end
 
   #------ Index test ------#
-  describe "GET index" do
+   describe "GET index" do
     before(:each) do
       @posts = [ :p1, :p2, :p3 ]
       Post.stub(:all) { @posts }

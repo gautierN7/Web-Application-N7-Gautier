@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe "EditPosts" do
   before(:each) do
+    @user = User.create!(:email => "gautier@aol.com", :password => "Azerty", :password_confirmation => "Azerty")
+    visit new_user_session_path  
+    fill_in("user_email", :with => @user.email)  
+    fill_in("user_password", :with => @user.password)
+    click_button("Sign in")
+    
     @posts = [Post.create(:title => 'Edit1', :body => "Abody11"),
               Post.create(:title => 'Edit2', :body => "Abody22"),
               Post.create(:title => 'Edit3', :body => "Abody33")]

@@ -3,6 +3,12 @@ require 'spec_helper'
 describe "EditComments" do
   
   before(:each) do
+    @user = User.create!(:email => "gautier@aol.com", :password => "Azerty", :password_confirmation => "Azerty")
+    visit new_user_session_path  
+    fill_in("user_email", :with => @user.email)  
+    fill_in("user_password", :with => @user.password)
+    click_button("Sign in")
+    
     @post = Post.create(:title => 'YouHou', :body => "HiHiHiHi")
     @comments = [Comment.create(:author => 'MacAlister', :body => "10", :post_id => @post.id),
                  Comment.create(:author => 'Intrus1', :body => "3", :post_id => @post.id),
@@ -10,7 +16,7 @@ describe "EditComments" do
     @comment = @comments[1]        
     visit post_path(@post.id)
   end  
-    
+
   describe "a comment in the list" do
     it "should have a edit button" do
       @comments.each{|comment| page.should have_link("Edit this Comment", :href => edit_comment_path(@post.id, comment.id), :method => 'edit')}

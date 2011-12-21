@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe CommentsController do
+include Devise::TestHelpers
  #------ Create test ------#
   describe "Comment create" do
 	 before(:each) do

@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe "CreateComments" do
+    before(:each) do
+      @user = User.create!(:email => "gautier@aol.com", :password => "Azerty", :password_confirmation => "Azerty")
+      visit new_user_session_path  
+      fill_in("user_email", :with => @user.email)  
+      fill_in("user_password", :with => @user.password)
+      click_button("Sign in")
+    end
     describe "GET /posts/id/comments/new" do
         before(:each) do
             @post = Post.create(:title => 'Comment1', :body => "HiHi")

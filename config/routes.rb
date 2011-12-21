@@ -1,6 +1,8 @@
 Blog::Application.routes.draw do
 
-  get "comments/edit"
+  devise_for :users
+
+  #########get "comments/edit"
 
   root :to => 'posts#index'
   get '/posts/new',           :controller => :posts,         :action => :new,           :as => "new_post"
@@ -18,6 +20,11 @@ Blog::Application.routes.draw do
   delete '/posts/:id/comments/:idcomment', :controller => :comments,         :action => :destroy,        :as => "delete_comment"    
   get '/posts/:id/comments/edit/:idcomment', :controller => :comments,       :action => :edit,          :as => "edit_comment"
   put '/posts/:id/comments/:idcomment',                          :controller => :comments,       :action => :update,        :as => "update_comment"
+
+
+  
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

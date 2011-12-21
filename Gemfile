@@ -8,10 +8,11 @@ gem 'rails', '3.1.1'
 gem 'sqlite3'
 
 gem 'therubyracer' # compilateur javascript
-
+gem 'devise'
 group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
 end
 
 

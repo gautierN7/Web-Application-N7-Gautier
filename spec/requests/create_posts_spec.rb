@@ -1,7 +1,13 @@
 require 'spec_helper'
 
 describe "CreatePosts" do
-
+  before(:each) do
+        @user = User.create!(:email => "gautier@aol.com", :password => "Azerty", :password_confirmation => "Azerty")
+        visit new_user_session_path  
+        fill_in("user_email", :with => @user.email)  
+        fill_in("user_password", :with => @user.password)
+        click_button("Sign in")
+  end
   describe "GET /posts/new" do
     before(:each) do
       visit new_post_path
