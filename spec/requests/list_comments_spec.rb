@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "ListComments" do
   before(:each) do
-    @post = Post.create(:title => 'post1', :body => "body1")
+    @post = Post.create(:title => 'SXzXez', :body => "body1")
     @comments = [Comment.create(:author => 'Barney', :body => "Legendary", :post_id => @post.id),
               Comment.create(:author => 'Marshall', :body => "Lily", :post_id => @post.id),
               Comment.create(:author => 'Ted', :body => "Robin", :post_id => @post.id)]

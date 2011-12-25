@@ -28,10 +28,16 @@ describe PostsController do
   describe "POST create" do
    before(:each) do
      @new_post_params = {"post" => {"title" => "post_title", "body" => "post_body"}}
+     @new_post_params2 = {"post" => {"title" => "", "body" => ""}}
      Post.stub(:create) {true}
    end
    it "should create a new Post with the given params" do
-     Post.should_receive(:create).with(@new_post_params["post"])
+     current_user = stub_model(User, :id => 2, :email => "gautier@aol.com", :password => "Azerty")
+     posts = double(:posts)
+     posts.stub(:create){true}
+     current_user.stub(:posts){posts}
+     controller.current_user.should_receive(:posts).and_return(posts)  #cf web
+     posts.should_receive(:create).with(@new_post_params["post"])
      post :create, @new_post_params
    end
 
@@ -39,14 +45,12 @@ describe PostsController do
      post :create, @new_post_params
      response.should redirect_to posts_path
    end
+   
+    it "should redirect to posts_path" do
+     post :create, @new_post_params2
+     response.should redirect_to new_post_path
+   end
   end  
-  
-  describe "POST create" do
-    it "should redirect to the post list" do
-      post :create
-      response.should redirect_to posts_path
-    end
-  end
   
   #------ Delete test ------#
   describe "DELETE destroy" do
@@ -55,11 +59,6 @@ describe PostsController do
       @post.stub(:destroy){true}
       Post.stub(:find){@post}
     end
-    it "should redirect to the posts list" do
-      delete :destroy, {:id => @post.id }
-      response.should redirect_to posts_path
-    end
-
     it "should search the post" do
       Post.should_receive(:find).with(@post.id.to_s).and_return(@post)
       delete :destroy, {:id => @post.id }
@@ -68,6 +67,10 @@ describe PostsController do
     it "should destroy the post" do
       @post.should_receive(:destroy)
       delete :destroy, {:id => @post.id }
+    end
+    it "should redirect to the posts list" do
+      delete :destroy, {:id => @post.id }
+      response.should redirect_to posts_path
     end
   end
   

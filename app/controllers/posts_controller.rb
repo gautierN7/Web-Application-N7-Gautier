@@ -9,8 +9,18 @@ class PostsController < ApplicationController
   end
   
   def create
-    Post.create(params[:post])
-    redirect_to posts_path
+    @post = current_user.posts.create(params[:post])
+    #redirect_to posts_path    
+    #render :text => params.inspect
+    respond_to do |format|
+      if Post.find_by_title(params[:post][:title]) #@post.save #current_user.posts.create!(params[:post]) #Post.find_by_title(params[:post][:title])
+        format.html { redirect_to posts_path, notice: 'Post was successfully created.' } # rake routes pour voir la correspondance #@post = post(@post.id)
+        format.json { render json: @post, status: :created, location: @post }
+      else
+        format.html { redirect_to new_post_path } # 
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
   end
   
   def show
@@ -37,4 +47,5 @@ class PostsController < ApplicationController
      # end ?
 
   end
+  
 end

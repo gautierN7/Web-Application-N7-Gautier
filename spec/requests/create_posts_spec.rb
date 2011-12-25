@@ -47,12 +47,14 @@ describe "CreatePosts" do
       click_link("Create a new Post")
       current_path.should == new_post_path
       fill_in("Title", :with => "Post 1")
+      fill_in("Body", :with => "Body 2?")
       click_button("Create Post")
       current_path.should == posts_path
     end
 
     it "should display the new post in the list" do
       page.should have_content("Post 1")
+      page.should have_content("Body 2?")
     end
   end
       

@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user! , :except => [:new, :create]
 
+  #def index
+  #     @post = Post.find(params[:id])
+  #end
+  
   def new
        @post = Post.find(params[:id])
   end
@@ -12,10 +16,10 @@ class CommentsController < ApplicationController
   end
   
   def destroy
-      post = Post.find(params[:id])
-      @comment = post.comments.find(params[:idcomment])
+      @post = Post.find(params[:id])
+      @comment = @post.comments.find(params[:idcomment])
       @comment.destroy
-      redirect_to post_path(post.id)
+      redirect_to post_path(@post.id)
   end
   
   def edit
