@@ -104,7 +104,7 @@ describe PostsController do
       get :edit, {:id => @post.id }
     end
     it "should modify the post" do
-        @post.should_receive(:update_attributes)
+        @post.should_receive(:update_attributes!)
         put :update, {:id => @post.id }
     end
     it "should redirect to the post" do

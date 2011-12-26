@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def create
     current_user.posts.create!(params[:post])
         redirect_to posts_path, notice: 'Post was successfully created.'
-    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique#, ActiveModel::Validator
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, ActiveRecord::Validation
       redirect_to new_post_path, notice: 'Title can not be blank, Body can not be blank, or Title alrealy exists or Title or Body too long'
 
 
@@ -44,8 +44,11 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     # if ?
-       @post.update_attributes(params[:post])
+       @post.update_attributes!(params[:post])
         redirect_to post_path(@post), notice: 'Post was successfully updated.'
+            rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, ActiveRecord::Validation
+      redirect_to edit_post_path(@post), notice: 'Title can not be blank, Body can not be blank, or Title alrealy exists or Title or Body too long'
+
      # else ?
      #   render action: "edit" ?
      # end ?

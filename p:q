@@ -1,0 +1,95 @@
+[33mcommit 557fd1e6756564c5d48d582b4ec27f33e4a8decb[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Mon Dec 26 13:22:37 2011 +0100
+
+    ManqueGestionDesUserpost
+
+[33mcommit c1713498f56336540aa60cfdf99ddc5b8b8be678[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Sun Dec 25 17:32:12 2011 +0100
+
+    JebosselejourdeNoel^^
+
+[33mcommit 2639a51959644878817f77c6016a78f81968f6ed[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Wed Dec 21 19:02:35 2011 +0100
+
+    AuthCommentWithDeviseOK
+
+[33mcommit 73662590be2016533dbc3d95780c8311c6ce4f6e[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Wed Dec 21 16:50:50 2011 +0100
+
+    AuthWithDevise
+
+[33mcommit e6930c365eb9b4813f57889800cb2ab04a88a055[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Tue Dec 20 17:40:50 2011 +0100
+
+    EditOkButControlSpecBof
+
+[33mcommit 4ef1f1eba3721f756ac081193ae5e06eeb2885e0[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Thu Dec 15 22:23:02 2011 +0100
+
+    DeleteOK
+
+[33mcommit 668f84c0cc22ca8270c0c1403f98faddeddc1814[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Thu Dec 15 19:00:05 2011 +0100
+
+    CreateCommentOK
+
+[33mcommit 733824b379752b62b66f9f5723c1378941346172[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Wed Dec 14 20:15:34 2011 +0100
+
+    Create Comment Scenario
+
+[33mcommit fcbdf1385a97dc3cdc090a19ce73ee0d3246a6e9[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Sat Dec 10 22:51:44 2011 +0100
+
+    EditOk
+
+[33mcommit 85749fc56a9c79ef5817dc8e5ef9c14aef9bdd7d[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Sat Dec 10 14:12:58 2011 +0100
+
+    ShowWithBackButtonOK
+
+[33mcommit a9cb5be95df8bc22a8857cf2e2bacf9d1c9f082d[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Tue Nov 29 18:25:48 2011 +0100
+
+    BeforeStartof Comment
+
+[33mcommit 847d08e94075a610caf731b616c9e5a9020363a3[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Mon Nov 28 19:32:22 2011 +0100
+
+    PostOK scenario
+
+[33mcommit cf69b848326adefb1f722b2e5756051a8dd20491[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Mon Nov 28 10:00:46 2011 -0800
+
+    CreateOk scenario
+
+[33mcommit cb38fe2094e63cfb15ca5407bb39ee0660b6235d[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Mon Nov 28 09:47:29 2011 -0800
+
+    ListPost scenario
+
+[33mcommit 752aec39235262d921f2d2863f29abc702ffc603[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Mon Nov 28 04:00:23 2011 -0500
+
+    CreatePost scenario
+
+[33mcommit 0da2b545ecf37de57dd600f8da9c0d509c6cb5a4[m
+Author: Gautier Scandella <gautier.scandella@gmail.com>
+Date:   Sat Nov 26 22:17:43 2011 +0100
+
+    Initial commit
