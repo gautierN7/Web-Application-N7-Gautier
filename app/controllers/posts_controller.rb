@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-
+  #before_filter :authorized_user, :only => :destroy
+  
   def index
     @posts = Post.all
   end
@@ -33,26 +34,38 @@ class PostsController < ApplicationController
   
   def destroy
     post = Post.find(params[:id])
-    post.destroy
-    redirect_to posts_path
+    if current_user.id == post.user_id
+        post.destroy
+        redirect_to posts_path, notice: 'Post successfully destroyed'
+    else
+        redirect_to posts_path, notice: 'Access Denied'
+    end
   end
   
   def edit
     @post = Post.find(params[:id])
+    if current_user.id == @post.user_id
+        
+    else
+        redirect_to posts_path, notice: 'Access Denied'
+    end
+        
   end
   
   def update
     @post = Post.find(params[:id])
-    # if ?
-       @post.update_attributes!(params[:post])
-        redirect_to post_path(@post), notice: 'Post was successfully updated.'
-            rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, ActiveRecord::Validation
-      redirect_to edit_post_path(@post), notice: 'Title can not be blank, Body can not be blank, or Title alrealy exists or Title or Body too long'
+    @post.update_attributes!(params[:post])
+    redirect_to post_path(@post), notice: 'Post was successfully updated.'
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, ActiveRecord::Validation
+           redirect_to edit_post_path(@post), notice: 'Title can not be blank, Body can not be blank, or Title alrealy exists or Title or Body too long'
 
-     # else ?
-     #   render action: "edit" ?
-     # end ?
 
   end
+  
+ #   private  
+ #   def authorized_user
+ #     #@post = current_user.posts.find_by_id(params[:id])
+ #     redirect_to posts_path, notice: 'Access Denied' if current_user.posts.find_by_id(params[:id]).nil?
+ #   end
   
 end

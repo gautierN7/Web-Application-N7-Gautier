@@ -56,7 +56,9 @@ describe PostsController do
   #------ Delete test ------#
   describe "DELETE destroy" do
     before(:each) do
-      @post = stub_model(Post, :id => 23)
+	  user = User.create(:id => 2402, :email => "jano@lapin.aaa", :password => "password")
+      sign_in user
+      @post = stub_model(Post, :id => 23, :user_id => user.id)
       @post.stub(:destroy){true}
       Post.stub(:find){@post}
     end

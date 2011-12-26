@@ -26,8 +26,14 @@ describe "DeletePosts" do
         click_on "Delete this Post"
       end
       current_path.should == posts_path
-      page.should_not have_content(@post.title)
-      page.should_not have_content(@post.body)
+      
+      if (@user.id == @post.user_id)      
+          page.should_not have_content(@post.title)
+          page.should_not have_content(@post.body)
+      else
+          page.should have_content(@post.title)
+          page.should have_content(@post.body)
+      end
     end
   end
 end

@@ -8,9 +8,9 @@ describe "EditPosts" do
     fill_in("user_password", :with => @user.password)
     click_button("Sign in")
     
-    @posts = [Post.create(:title => 'Edit1', :body => "Abody11"),
-              Post.create(:title => 'Edit2', :body => "Abody22"),
-              Post.create(:title => 'Edit3', :body => "Abody33")]
+    @posts = [Post.create(:title => 'Edit1', :body => "Abody11", :user_id => @user.id),
+              Post.create(:title => 'Edit2', :body => "Abody22", :user_id => @user.id),
+              Post.create(:title => 'Edit3', :body => "Abody33", :user_id => @user.id)]
     @post = @posts[1]
     visit posts_path
   end  
