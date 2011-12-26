@@ -37,7 +37,7 @@ describe PostsController do
      posts.stub(:create){true}
      current_user.stub(:posts){posts}
      controller.current_user.should_receive(:posts).and_return(posts)  #cf web
-     posts.should_receive(:create).with(@new_post_params["post"])
+     posts.should_receive(:create!).with(@new_post_params["post"])
      post :create, @new_post_params
    end
 
@@ -52,6 +52,7 @@ describe PostsController do
    end
   end  
   
+
   #------ Delete test ------#
   describe "DELETE destroy" do
     before(:each) do

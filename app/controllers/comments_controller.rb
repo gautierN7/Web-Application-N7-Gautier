@@ -1,18 +1,19 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user! , :except => [:new, :create]
 
-  #def index
-  #     @post = Post.find(params[:id])
-  #end
-  
   def new
        @post = Post.find(params[:id])
   end
   
   def create
-       @post = Post.find(params[:id])
+      
+      @post = Post.find(params[:id])
+      if user_signed_in?    
+       @comment = @post.comments.create(params[:comment].merge(:author => current_user.email))
+      else
        @comment = @post.comments.create(params[:comment])
-       redirect_to post_path(@post.id) 
+      end
+      redirect_to post_path(@post.id) 
   end
   
   def destroy

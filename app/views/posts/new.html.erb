@@ -1,4 +1,7 @@
-
+<h1>Posts#new</h1>
+<p>Find me in app/views/posts/new.html.erb</p>
+<p style="color : green"> <%= flash[:notice] %></p>
+<p style="color : red"> <%= flash[:error] %></p>
 <%= form_tag(posts_path, :method => "post", :id => 'new_post') do %>
   <%= label_tag(:post_title, 'Title') %>
   <%= text_field_tag('post[title]') %>
