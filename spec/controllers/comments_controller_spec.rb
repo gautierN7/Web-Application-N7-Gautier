@@ -18,7 +18,7 @@ describe CommentsController do
         comments.stub(:create){true}
         @post.stub(:comments){comments}
         @post.should_receive(:comments).and_return(comments)
-        comments.should_receive(:create).with(@new_comment_params['comment'])
+        comments.should_receive(:create!).with(@new_comment_params['comment'])
         post :create, @new_comment_params
      end
      it "should redirect to post_path" do
@@ -30,9 +30,11 @@ describe CommentsController do
   #------ Delete test ------#
   describe "DELETE comment" do
     before(:each) do
+	    user = User.create(:id => 2402, :email => "jano@lapin.aaa", :password => "password")
+        sign_in user
         @post = stub_model(Post, :id => 50)
-        Post.stub(:find){@post}
-        @comment = stub_model(Comment, :id => 23)
+        Post.stub(:find){@post}        
+        @comment = stub_model(Comment, :id => 23, :author => user.email)
     end
     it "should search the comment and destroy it then redirect to post with all the comment associated" do
         comments = double(:comments)

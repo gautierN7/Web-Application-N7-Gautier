@@ -1,7 +1,7 @@
 <h1>Comments#new</h1>
 <p>Find me in app/views/comments/new.html.erb</p>
-
-
+<p style="color : green"> <%= flash[:notice] %></p>
+<p style="color : red"> <%= flash[:error] %></p>
 <%= form_tag(post_path(@post.id), :method => "post", :id => 'new_comment') do %>
   <%= label_tag(:comment_author, 'Author') %>
   <%= text_field_tag('comment[author]') %>

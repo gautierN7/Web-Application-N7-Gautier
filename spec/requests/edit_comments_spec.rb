@@ -3,16 +3,16 @@ require 'spec_helper'
 describe "EditComments" do
   
   before(:each) do
-    @user = User.create!(:email => "gautier@aol.com", :password => "Azerty", :password_confirmation => "Azerty")
+    @user = User.create!(:email => "zqezinezez@aol.com", :password => "Azerty", :password_confirmation => "Azerty")
     visit new_user_session_path  
     fill_in("user_email", :with => @user.email)  
     fill_in("user_password", :with => @user.password)
     click_button("Sign in")
     
     @post = Post.create(:title => 'YouHou', :body => "HiHiHiHi")
-    @comments = [Comment.create(:author => 'MacAlister', :body => "10", :post_id => @post.id),
-                 Comment.create(:author => 'Intrus1', :body => "3", :post_id => @post.id),
-                 Comment.create(:author => 'Dusautoir', :body => "7", :post_id => @post.id)]
+    @comments = [Comment.create(:author => 'zqezinezez@aol.com', :body => "10", :post_id => @post.id),
+                 Comment.create(:author => 'zqezinezez@aol.com', :body => "3", :post_id => @post.id),
+                 Comment.create(:author => 'zqezinezez@aol.com', :body => "7", :post_id => @post.id)]
     @comment = @comments[1]        
     visit post_path(@post.id)
   end  
@@ -25,7 +25,7 @@ describe "EditComments" do
   
   describe "after a click on the Edit link on the 2nd comment" do
     it "should display the 2nd comment edit view" do
-      within("li", :text => @comment.author) do
+      within("li", :text => @comment.body) do
         click_on "Edit this Comment"
       end
       current_path.should == "/posts/#{@post.id}/comments/edit/#{@comment.id}"

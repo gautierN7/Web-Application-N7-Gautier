@@ -14,8 +14,6 @@ class PostsController < ApplicationController
         redirect_to posts_path, notice: 'Post was successfully created.'
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, ActiveRecord::Validation
       redirect_to new_post_path, notice: 'Title can not be blank, Body can not be blank, or Title alrealy exists or Title or Body too long'
-
-
     #render :text => params.inspect
     #respond_to do |format|
     #  if @post.save #Post.find_by_title(params[:post][:title]) #@post.save #current_user.posts.create!(params[:post]) #Post.find_by_title(params[:post][:title])
@@ -44,10 +42,9 @@ class PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
-    if current_user.id == @post.user_id
-        
+    if current_user.id == @post.user_id   
     else
-        redirect_to posts_path, notice: 'Access Denied'
+        redirect_to posts_path, notice: 'Access Deniedaaa'
     end
         
   end
@@ -58,8 +55,6 @@ class PostsController < ApplicationController
     redirect_to post_path(@post), notice: 'Post was successfully updated.'
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, ActiveRecord::Validation
            redirect_to edit_post_path(@post), notice: 'Title can not be blank, Body can not be blank, or Title alrealy exists or Title or Body too long'
-
-
   end
   
  #   private  

@@ -27,8 +27,13 @@ describe "DeleteComments" do
         click_on "Delete this Comment"
       end
       current_path.should == post_path(@post.id)
-      page.should_not have_content(@comment.author)
-      page.should_not have_content(@comment.body)
+      if (@user.email == @comment.author)      
+          page.should_not have_content(@comment.author)
+          page.should_not have_content(@comment.body)
+      else
+          page.should have_content(@comment.author)
+          page.should have_content(@comment.body)
+      end
     end
   end
 end

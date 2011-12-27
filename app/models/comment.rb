@@ -4,5 +4,6 @@ class Comment < ActiveRecord::Base
     
       
     validates_presence_of :post_id, :author, :body
+    validates_length_of :body, :maximum => 450
 
 end
