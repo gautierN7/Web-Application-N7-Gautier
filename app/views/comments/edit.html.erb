@@ -4,9 +4,9 @@
 <p style="color : red"> <%= flash[:error] %></p>
 <%= form_tag(update_comment_path(@post.id, @comment.id), :method => "put", :id => 'edit_comment') do %>
   <%= label_tag(:comment_author, 'Author') %>
-  <%= text_field_tag('comment[author]', @comment.author) %>
+  <%= text_field_tag('comment[author]', @comment.author, :disabled => true) %>
   <%= label_tag(:comment_body, 'Body') %>
-  <%= text_field_tag('comment[body]', @comment.body) %>
+  <%= text_area_tag('comment[body]', @comment.body) %>
   <%= submit_tag("Update Comment") %>
 <% end %>
 

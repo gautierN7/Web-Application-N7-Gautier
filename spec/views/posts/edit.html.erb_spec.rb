@@ -33,7 +33,7 @@ describe "posts/edit.html.erb" do
   
   it "should have a field named post[body] and identified by #post_body" do
     render
-    rendered.should have_selector("input#post_body[name='post[body]']")
+    rendered.should have_selector("textarea#post_body[name='post[body]']")
     rendered.should have_field("post[body]")
   end
   
@@ -50,7 +50,7 @@ describe "posts/edit.html.erb" do
   
   it "should display one post with its title and its body" do
       rendered.should have_selector("input#post_title[name='post[title]']", :value => @post.title)
-      rendered.should have_selector("input#post_body[name='post[body]']", :value => @post.body)
+      rendered.should have_selector("textarea#post_body[name='post[body]']", :value => @post.body)
   end
   
   it "should have a back button displaying" do

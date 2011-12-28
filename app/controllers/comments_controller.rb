@@ -32,7 +32,8 @@ class CommentsController < ApplicationController
   def edit
       @post = Post.find(params[:id])
       @comment = @post.comments.find(params[:idcomment])
-      if current_user.email != @comment.author # Utilisateur correct
+      if current_user.email == @comment.author or current_user.admin? # Utilisateur correct
+      else
               redirect_to post_path(@post.id), notice: 'Access Denied'
       end
   end

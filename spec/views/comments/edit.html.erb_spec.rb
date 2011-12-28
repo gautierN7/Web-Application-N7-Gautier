@@ -31,7 +31,7 @@ describe "comments/edit.html.erb" do
   end
   
   it "should have a field named comment[body] and identified by #comment_body" do
-    rendered.should have_selector("input#comment_body[name='comment[body]']")
+    rendered.should have_selector("textarea#comment_body[name='comment[body]']")
     rendered.should have_field("comment[body]")
   end
   

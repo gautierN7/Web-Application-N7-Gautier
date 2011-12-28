@@ -36,11 +36,11 @@ describe "EditComments" do
     end
     it "should modify the author and body" do
         visit edit_comment_path(@post.id, @comment.id)
-        fill_in("Author", :with => "Clark Kent")
+        #fill_in("Author", :with => "Clark Kent") # Test impossible depuis l'interdiction de modif de l'author lors d'un edit
         fill_in("Body", :with => "MonCommentaire") 
         click_button("Update Comment")
         current_path.should == post_path(@post.id)       
-        page.should have_content("Clark Kent")
+        #page.should have_content("Clark Kent") # Test impossible depuis l'interdiction de modif de l'author lors d'un edit
         page.should have_content("MonCommentaire")
     end    
     it "should have a back button displaying" do

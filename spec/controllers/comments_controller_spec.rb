@@ -51,9 +51,11 @@ describe CommentsController do
   #------ Edit test ------#
   describe "Comment /edit" do
     before(:each) do						
-        @post = stub_model(Post, :id => 50)
+   	    user = User.create(:id => 2402, :email => "jano@lapin.aaa", :password => "password")
+        sign_in user						
+        @post = stub_model(Post, :id => 50, :user_id => user.id)
         Post.stub(:find){@post}
-        @comment = stub_model(Comment, :id => 23)
+        @comment = stub_model(Comment, :id => 23, :author => user.email)
     end
     it "should get the post from the bd and find the releated comment" do
         comments = double(:comments)

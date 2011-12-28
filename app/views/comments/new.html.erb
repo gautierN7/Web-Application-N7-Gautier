@@ -6,7 +6,7 @@
   <%= label_tag(:comment_author, 'Author') %>
   <%= text_field_tag('comment[author]') %>
   <%= label_tag(:comment_body, 'Body') %>
-  <%= text_field_tag('comment[body]') %>
+  <%= text_area_tag('comment[body]') %>
   <%= submit_tag("Create Comment") %>
 
 <% end %>

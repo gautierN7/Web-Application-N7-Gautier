@@ -30,7 +30,7 @@ describe "posts/new.html.erb" do
   
   it "should have a field named post[body] and identified by #post_body" do
     render
-    rendered.should have_selector("input#post_body[name='post[body]']")
+    rendered.should have_selector("textarea#post_body[name='post[body]']")
     rendered.should have_field("post[body]")
   end
   
