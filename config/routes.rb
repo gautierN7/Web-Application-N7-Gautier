@@ -21,7 +21,6 @@ Blog::Application.routes.draw do
   get '/posts/:id/comments/edit/:idcomment', :controller => :comments,       :action => :edit,          :as => "edit_comment"
   put '/posts/:id/comments/:idcomment',                          :controller => :comments,       :action => :update,        :as => "update_comment"
 
-
   
 
 

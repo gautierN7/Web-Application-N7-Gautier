@@ -7,9 +7,9 @@ describe "DeletePosts" do
     fill_in("user_email", :with => @user.email)  
     fill_in("user_password", :with => @user.password)
     click_button("Sign in")
-    @posts = [Post.create(:title => 'Chapitre1', :body => "Abody1"),
-              Post.create(:title => 'Chapitre2', :body => "Abody2"),
-              Post.create(:title => 'Chapitre3', :body => "Abody3")]
+    @posts = [Post.create(:title => 'Chapitre1', :body => "Abody1", :user_id => @user.id),
+              Post.create(:title => 'Chapitre2', :body => "Abody2", :user_id => @user.id),
+              Post.create(:title => 'Chapitre3', :body => "Abody3", :user_id => @user.id)]
     @post = @posts[1]
     visit posts_path
   end

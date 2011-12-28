@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
   def destroy
       @post = Post.find(params[:id])
       @comment = @post.comments.find(params[:idcomment])
-      if current_user.email == @comment.author # Utilisateur correct
+      if current_user.email == @comment.author or current_user.admin? # Utilisateur correct
         @comment.destroy
         redirect_to post_path(@post.id), notice: 'Comment successfuly destroyed'
       else # Utilisateur non loggué / Annoyme
@@ -49,4 +49,5 @@ class CommentsController < ApplicationController
     #else
     #end
   end
+
 end

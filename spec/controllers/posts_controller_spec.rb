@@ -97,7 +97,9 @@ describe PostsController do
   #------ Edit test ------#
   describe "POST /edit" do
     before(:each) do
-      @post = stub_model(Post, :id => 2310, :title => '2310', :body => "2310")
+	  user = User.create(:id => 2402, :email => "gautier@aol.com", :password => "password")
+      sign_in user
+      @post = stub_model(Post, :id => 2310, :title => '2310', :body => "2310", :user_id => user.id)
       @post.stub(:edit){true}
       Post.stub(:find){@post}
     end

@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   
   def destroy
     post = Post.find(params[:id])
-    if current_user.id == post.user_id
+    if current_user.id == post.user_id or current_user.admin
         post.destroy
         redirect_to posts_path, notice: 'Post successfully destroyed'
     else
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
-    if current_user.id == @post.user_id   
+    if current_user.id == @post.user_id or current_user.admin == true
     else
         redirect_to posts_path, notice: 'Access Deniedaaa'
     end
