@@ -1,30 +1,36 @@
 <h1>Posts#show</h1>
 <p>Find me in app/views/posts/show.html.erb</p>
 <p style="color : green"> <%= flash[:notice] %></p>
-<p style="color : red"> <%= flash[:error] %></p>
-<p>
-  <b><%= label_tag(:post_title, 'Title') %></b>
-  <%= @post.title %>
-</p>
 
-<p>
-  <b><%= label_tag(:post_body, 'Body') %></b>
-  <%= @post.body %>
-</p>
+<div class="postview">  
+  <p>
+  <b><h2 class="post-showtitle"><%= label_tag(:post_title, 'Title : ') %><%= @post.title %></h2></b>
+  </p>
+  <div class='barre'></div>
+  <p>
+  <b><div class="post-showbody"><h3 class="post-showbodycolor"><%= label_tag(:post_body, 'Body :') %></h3><%= @post.body %></div></b>
+
+  </p>
+</div>
 
 <ul id='comments'>
   <% @post.comments.each do |comment| %>
+    <div class="comment">
     <li id='comment_<%= comment.id %>'>
-        <%= comment.author %> <%= comment.body %>
-        <%= link_to "Edit this Comment", edit_comment_path(@post.id, comment.id), :method => 'get'%>
-        <%= link_to "Delete this Comment", delete_comment_path(@post.id, comment.id), :method => 'delete'%>
-
+        <h2 class="comment-title"><%= comment.author %></h2> 
+            <div class='barre'></div>
+            <div class="comment-nagivation"> 
+                <label class="droite"><%= link_to "Delete this Comment", delete_comment_path(@post.id, comment.id), { :method => 'delete', :class => "supprimerc", :title => "Delete Comment" } %></label>
+                <label class="droite"><%= link_to "Edit this Comment", edit_comment_path(@post.id, comment.id), { :method => 'get', :class => "editc", :title => "Edit Comment" } %></label>
+            </div>
+        <div class="comment-body"><%= comment.body %></div>
     </li>
+    </div>
   <% end %>
 </ul>
-
-<%= button_to 'Create a new Comment', new_comment_path(@post.id), :method=>"get" %>
-<%= button_to 'Back', root_path %>
-
+<div class="actioncomment">
+    <div class="boutoncreate"><%= button_to 'Create a new Comment', new_comment_path(@post.id), :method=>"get" %></div>
+    <%= link_to 'Back', root_path, { :method => 'get', :class => "buttonback", :title => "back" }%>
+</div>
 
 

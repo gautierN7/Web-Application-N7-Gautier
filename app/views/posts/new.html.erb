@@ -1,14 +1,16 @@
 <h1>Posts#new</h1>
 <p>Find me in app/views/posts/new.html.erb</p>
-<p style="color : green"> <%= flash[:notice] %></p>
+<p class="msgflash" style="color : green"> <%= flash[:notice] %></p>
 <p style="color : red"> <%= flash[:error] %></p>
 <%= form_tag(posts_path, :method => "post", :id => 'new_post') do %>
-  <%= label_tag(:post_title, 'Title') %>
-  <%= text_field_tag('post[title]') %>
-  <%= label_tag(:post_body, 'Body') %>
-  <%= text_area_tag('post[body]') %>
-  <%= submit_tag("Create Post") %>
+  <p class="title"><%= label_tag(:post_title, 'Title') %><br/>
+  <%= text_field_tag('post[title]') %></p>
+  <p class="body"><%= label_tag(:post_body, 'Body') %><br/>
+  <%= text_area_tag('post[body]') %></p>
+<div class="action">
+<div class="boutoncreate"><%= submit_tag("Create Post") %></div>
 
 <% end %>
 
-<%= button_to 'Back', root_path %>
+<%= link_to 'Back', root_path, { :method => 'get', :class => "buttonback", :title => "back" }%>
+</div>

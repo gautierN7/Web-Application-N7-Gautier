@@ -89,4 +89,304 @@ nav ul li a:hover {
   border-radius:         10px;
 }
 
+/*  Cacher les balises li   */
+
+ul ul {display: none; position: absolute}
+li {list-style-type: none; position: relative}
+
+/* Create a New Post Button */
+
+a.createnewpost{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #6156D3;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+
+/* Gestion des liens Post (p) */
+
+a.editerp:link, a.editerp:visited {
+    display: block; /* l'élément devient de type block */
+    width: 32px; 
+    height: 32px; 
+    text-indent: -9999px;
+    background: transparent url('images/edit.png') no-repeat 0 0;
+    
+}
+
+a.supprimerp:link, a.supprimerp:visited {
+    display: block; 
+    width: 32px; 
+    height: 32px; 
+    text-indent: -9999px;
+    background: transparent url('images/delete.png') no-repeat 0 0;
+}
+
+a.afficherp:link, a.afficherp:visited {
+    display: block; 
+    width: 32px; 
+    height: 32px; 
+    text-indent: -9999px;
+    background: transparent url('images/loupe.png') no-repeat 0 0;
+}
+
+/* :@ Galere pour aligne 3image dans un div */
+ 
+.droite {
+  float: right;
+}
+
+/* Message flash */
+
+.msgflash {
+    text-align:center;
+}
+
+/* Navigation du Post */
+
+.post{
+  	background: #DFDFDF;
+	margin-top: 20px;
+    -moz-border-radius:10px;
+	padding: 0 0 0 0;
+	min-height: 25px;
+}
+
+.post-title{
+	background: transparent;
+	color: #557EC1;
+	padding: 0 0 0 15px;
+	margin: 0 0 0 0;
+}
+
+.post-title a{
+	color: #557EC1;
+	background: transparent;
+	text-decoration: none;
+}
+
+.post-info {
+	float: left;
+	height: 25px;
+	width: 200px;
+	margin: 0;
+	color: #808080;
+	background: transparent;
+	padding-left: 25px;
+	font-size: 1.2em;
+}
+
+.post-etat {
+	margin: 0;
+	height: 25px;
+	color: #808080;
+	background: transparent;
+	font-size: 0.8em;
+	border-bottom: 1px solid #140000;
+	margin-bottom: 10px;
+}
+
+.post-body{
+	clear: both;
+	background: transparent;
+	padding-left: 20px;
+	padding-right: 20px;
+	height: relative;
+	text-align: justify;
+	padding-bottom:45px;
+}
+
+.post-body:first-letter {                       /* Pour la première lettre de chaque paragraphes : */
+  font-size: large;                  /* Utiliser une police large */
+  font-weight: bold;                   /* Et grasse                 */
+  color: #8C97FF;                      /* De couleur bleu foncée    */
+}
+
+.post-nagivation {
+	width: 100px;
+	height: 25px;
+	float: right;
+	margin: 0;
+	color: #808080;
+	background: transparent;
+	padding-right: 12px;
+	position:absolute;
+	top:10px;
+	right:1px;
+}
+
+.post-commentaire{
+    background: transparent url('images/commentaires.png') no-repeat 0 0;
+    display: block; 
+    width: 45px; 
+    height: 45px; 
+    text-indent: -115px;
+	position:absolute;
+	right:1px;
+	bottom:0px;
+	margin-top:13px;
+
+}
+
+/* Page Edit et New */
+
+a.buttonback:link, a.buttonback:visited {
+    display: block; 
+    width: 32px; 
+    height: 32px; 
+    text-indent: 40px;
+    background: transparent url('images/precedent.png') no-repeat 0 0;
+}
+
+.boutoncreate {
+    display: block; 
+    width: 32px; 
+    height: 32px; 
+    text-indent: 40px;
+    background: transparent url('images/valider.png') no-repeat 0 0;
+    text-align:center;
+}
+
+.action {
+	background-color: rgb(204, 204, 255);
+	text-align: center;
+	border-style: dashed;
+	width:137px;
+	border-width: 1px;
+	border-color: black;
+	margin-top: 2em;
+	margin-left: 27em;   
+	padding: 8px
+}
+
+.title {
+    font-family:"Courier New", Times, serif;
+    text-align:center;
+}
+
+.body {
+    font-family:"Courier New", Times, serif;
+    text-align:center;
+}
+
+
+/* Page Show */
+
+.postview{
+  	background: #DFDFDF;
+	margin-top: 20px;
+    -moz-border-radius:10px;
+	padding: 0 0 0 0;
+	min-height: 25px;
+	margin-right:190px;
+}
+
+.barre{
+    height:1px;
+    background-color:black;
+}
+
+.post-showtitle{
+	background: transparent;
+	color: #557EC1;
+	padding: 0 0 0 15px;
+	margin: 0 0 0 0;
+}
+
+.post-showbody {
+	clear: both;
+	background: transparent;
+	padding-left: 20px;
+	padding-right: 20px;
+	height: relative;
+	text-align: justify;
+	padding-bottom:15px;
+	padding-top:15px;
+}
+
+.post-showbodycolor {
+    color: #557EC1
+}
+
+.comment{
+  	background: #687DC9;
+	margin-top: 20px;
+    -moz-border-radius:10px;
+	padding: 0 0 0 0;
+	min-height: 25px;
+	margin-left:190px;
+}
+
+.comment-title {
+	background: transparent;
+	color: #453E75;
+	padding: 0 0 0 15px;
+	margin: 0 0 0 0;
+}
+
+.comment-nagivation {
+	width: 100px;
+	height: 25px;
+	float: right;
+	margin: 0;
+	color: #808080;
+	background: transparent;
+	padding-right: 12px;
+	position:absolute;
+	top:10px;
+	right:1px;
+}
+
+
+a.editc:link, a.editc:visited {
+    display: block; 
+    width: 32px; 
+    height: 32px; 
+    text-indent: -9999px;
+    background: transparent url('images/edit.png') no-repeat 0 0;
+}
+
+a.supprimerc:link, a.supprimerc:visited {
+    display: block; 
+    width: 32px; 
+    height: 32px; 
+    text-indent: -9999px;
+    background: transparent url('images/delete.png') no-repeat 0 0;
+}
+
+
+.comment-body{
+	clear: both;
+	background: transparent;
+	padding-left: 20px;
+	padding-right: 20px;
+	height: relative;
+	text-align: justify;
+	padding-bottom:7px;
+}
+
+.comment-body:first-letter {                       
+  font-size: large;
+  font-weight: bold;
+  color: #441E2F;
+}
+
+.actioncomment {
+	background-color: rgb(204, 204, 255);
+	text-align: center;
+	border-style: dashed;
+	width:220px;
+	border-width: 1px;
+	border-color: black;
+	margin-top: 2em;
+	margin-left: 27em;   
+	padding: 8px
+}
+
 

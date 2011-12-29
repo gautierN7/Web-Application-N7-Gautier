@@ -43,8 +43,8 @@ describe "EditPosts" do
     end    
     it "should have a back button displaying" do
         visit post_path(@post.id)
-        page.should have_button("Back")
-        click_button("Back")  
+        page.should have_link("Back")
+        click_link("Back")  
         current_path.should == root_path
     end
   end

@@ -47,6 +47,6 @@ describe "posts/new.html.erb" do
   
   it "should have a back button displaying" do
     render
-    rendered.should have_button("Back")
+    rendered.should have_link("Back", :href => root_path)
   end
 end

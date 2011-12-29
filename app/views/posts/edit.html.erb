@@ -3,12 +3,12 @@
 <p style="color : green"> <%= flash[:notice] %></p>
 <p style="color : red"> <%= flash[:error] %></p>
 <%= form_tag(update_path(@post), :method => "put", :id => 'edit_post') do %>
-  <%= label_tag(:post_title, 'Title') %>
-  <%= text_field_tag('post[title]', @post.title) %>
-  <%= label_tag(:post_body, 'Body') %>
-  <%= text_area_tag('post[body]', @post.body) %>
-  <%= submit_tag("Update Post") %>
-
-<% end %>
-
-<%= button_to 'Back', root_path %>
+  <p class="title"><%= label_tag(:post_title, 'Title') %><br/>
+  <%= text_field_tag('post[title]', @post.title) %></p>
+  <p class="body"><%= label_tag(:post_body, 'Body') %><br/>
+  <%= text_area_tag('post[body]', @post.body) %></p>
+  <div class="action">
+    <div class="boutoncreate"><%= submit_tag("Update Post") %></div>
+    <% end %>
+    <%= link_to 'Back', root_path, { :method => 'get', :class => "buttonback", :title => "back" }%>
+  </div>
