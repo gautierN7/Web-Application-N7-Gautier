@@ -45,8 +45,8 @@ describe "EditComments" do
     end    
     it "should have a back button displaying" do
         visit edit_comment_path(@post.id, @comment.id)
-        page.should have_button("Back")
-        click_button("Back")  
+        page.should have_link("Back")
+        click_link("Back")  
         current_path.should == post_path(@post.id)
     end
   end

@@ -1,14 +1,16 @@
 <h1>Comments#new</h1>
 <p>Find me in app/views/comments/new.html.erb</p>
-<p style="color : green"> <%= flash[:notice] %></p>
-<p style="color : red"> <%= flash[:error] %></p>
+<p class="msgflash" style="color : green"> <%= flash[:notice] %></p>
+
 <%= form_tag(post_path(@post.id), :method => "post", :id => 'new_comment') do %>
-  <%= label_tag(:comment_author, 'Author') %>
-  <%= text_field_tag('comment[author]') %>
-  <%= label_tag(:comment_body, 'Body') %>
-  <%= text_area_tag('comment[body]') %>
-  <%= submit_tag("Create Comment") %>
+  <p class="title"><%= label_tag(:comment_author, 'Author') %><br/>
+  <%= text_field_tag('comment[author]') %></p>
+  <p class="body"><%= label_tag(:comment_body, 'Body') %><br/>
+  <%= text_area_tag('comment[body]') %></p>
+  <div class="actionc">
+  <div class="boutoncreate"><%= submit_tag("Create Comment") %></div>
 
 <% end %>
 
-<%= button_to 'Back', post_path(@post.id), :method=>"get" %>
+<%= link_to 'Back', post_path(@post.id), { :method => 'get', :class => "buttonback", :title => "back" }%>
+</div>

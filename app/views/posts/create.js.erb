@@ -1,0 +1,3 @@
+$("body ul tbody").append("<%= escape_javascript(@posts.title) %>");
+$("form#new_post").remove();
+$("a[href='<%= new_post_path %>']").fadeIn();

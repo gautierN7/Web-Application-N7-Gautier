@@ -7,23 +7,30 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post = Post.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @post }
+	  format.js # new.js.erb
+    end
   end
   
   def create
     current_user.posts.create!(params[:post])
-        redirect_to posts_path, notice: 'Post was successfully created.'
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique, ActiveRecord::Validation
-      redirect_to new_post_path, notice: 'Title can not be blank, Body can not be blank, or Title alrealy exists or Title or Body too long'
-    #render :text => params.inspect
-    #respond_to do |format|
-    #  if @post.save #Post.find_by_title(params[:post][:title]) #@post.save #current_user.posts.create!(params[:post]) #Post.find_by_title(params[:post][:title])
-    #    format.html { redirect_to posts_path, notice: 'Post was successfully created.' } # rake routes pour voir la correspondance #@post = post(@post.id)
-    #    format.json { render json: @post, status: :created, location: @post }
-    #  else
-    #    format.html { redirect_to new_post_path } # 
-    #    format.json { render json: @post.errors, status: :unprocessable_entity }
-    #  end
-    #end
+        respond_to do |format|
+            format.html { redirect_to new_post_path, notice: 'Title can not be blank, Body can not be blank, or Title alrealy exists or Title or Body too long' }
+            format.json { render json: @post.errors, status: :unprocessable_entity }
+
+        end
+    else
+        respond_to do |format|
+            format.html { redirect_to posts_path, notice: 'Post was successfully created.' } # rake routes pour voir la correspondance #@post = post(@post.id)
+            format.json { render json: @post, status: :created, location: @post }
+            #format.js
+        end    
+            #render :text => params.inspect
   end
   
   def show

@@ -51,7 +51,7 @@ describe "comments/edit.html.erb" do
  #### end
   
   it "should have a back button displaying" do
-    rendered.should have_button("Back")
+    rendered.should have_link("Back", :href => post_path(@post.id))
   end
 
 

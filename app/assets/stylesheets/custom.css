@@ -103,7 +103,7 @@ a.createnewpost{
   text-align: center;
   width: 190px;
   color: #fff;
-  background: #6156D3;
+  background: #557EC1;
   font-size: 150%;
   font-weight: bold;
   padding: 20px;
@@ -174,7 +174,7 @@ a.afficherp:link, a.afficherp:visited {
 .post-info {
 	float: left;
 	height: 25px;
-	width: 200px;
+	width: 400px;
 	margin: 0;
 	color: #808080;
 	background: transparent;
@@ -389,4 +389,16 @@ a.supprimerc:link, a.supprimerc:visited {
 	padding: 8px
 }
 
+/* Edit Comment */ 
 
+.actionc {
+	background-color: rgb(204, 204, 255);
+	text-align: center;
+	border-style: dashed;
+	width:180px;
+	border-width: 1px;
+	border-color: black;
+	margin-top: 2em;
+	margin-left: 27em;   
+	padding: 8px
+}

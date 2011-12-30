@@ -1,15 +1,16 @@
 <h1>Comments#edit</h1>
 <p>Find me in app/views/comments/edit.html.erb</p>
-<p style="color : green"> <%= flash[:notice] %></p>
-<p style="color : red"> <%= flash[:error] %></p>
+<p class="msgflash" style="color : green"> <%= flash[:notice] %></p>
+
 <%= form_tag(update_comment_path(@post.id, @comment.id), :method => "put", :id => 'edit_comment') do %>
-  <%= label_tag(:comment_author, 'Author') %>
-  <%= text_field_tag('comment[author]', @comment.author, :disabled => true) %>
-  <%= label_tag(:comment_body, 'Body') %>
-  <%= text_area_tag('comment[body]', @comment.body) %>
-  <%= submit_tag("Update Comment") %>
+  <p class="title"><%= label_tag(:comment_author, 'Author') %><br/>
+  <%= text_field_tag('comment[author]', @comment.author, :disabled => true) %></p>
+  <p class="body"><%= label_tag(:comment_body, 'Body') %><br/>
+  <%= text_area_tag('comment[body]', @comment.body) %></p>
+  <div class="actionc">
+  <div class="boutoncreate"><%= submit_tag("Update Comment") %></div>
 <% end %>
 
-<%= button_to 'Back', post_path(@post.id), :method => 'get' %>
-
+<%= link_to 'Back', post_path(@post.id), { :method => 'get', :class => "buttonback", :title => "back" }%>
+</div>
 
