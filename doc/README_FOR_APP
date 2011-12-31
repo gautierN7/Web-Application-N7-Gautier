@@ -1,2 +1,219 @@
 Use this README file to introduce your application and point to useful places in the API for learning more.
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+
+*--------------------------------------------------------------------------------------*
+| DATE : 31 Décembre 2011                                                              | 
+| AUTEUR : Gautier SCANDELLA - Etudiant à l'ENSEEIHT                                   | 
+| PROMOTION : Apprenti Ingénieur en Informatique et Réseaux - 3ème année.              |
+| PROJET : Développer un blog/forum dans le cadre du cours de M. Pierre GAMBAROTTO     |
+| OUTILS :  RUBY ON RAILS (RoR) - HTML - CSS - JavaScript (AJAX)                       |
+*--------------------------------------------------------------------------------------*
+
+
+L'application présentée ici est un blog/forum permettant à des internautes/utilisateurs lambda de réaliser des actions que nous présenterons plus en détail par la suite.
+Ce blog est sécurisé, c'est à dire qu'un utilisateur X ne peut faire qu'un certains nombre d'actions limitées.
+
+
+Les actions implantées sur ce blog sont celles que l'on peut retrouver sur n'importe quel blog de la toile, en voici une liste non exhaustive :
+
+- Création de compte utilisateur, modification du mot de passe
+- Création/Edition/Affichage/Suppression de post/topic/message
+- Création/Edition/Supression de commentaire
+
+Bien sûr toutes ces tâches sont contraintes aux différentes sécurités du blog. Par exemple seuls les utilisateurs authentifiés pourront créer des posts.
+En revanche un quelconque utilisateur qu'il soit authentifié ou non pourra commenter des post.
+
+
+*----------------------------------------------------------*
+| I. Listes des fonctionnalités offertes par ce blog/forum |
+*----------------------------------------------------------*
+
+
+1. Tous les utilisateurs
+
+
+- Création de compte utilisateur (Email/Password/Password confirmation), des contraintes (validateurs) sont bien sûr positionnées (adresse mail unique/valide, nombre minimal de caractères pour le mdp...)
+- Lire les messages postés par les utilisateurs identifiés.
+- Commenter des messages. /!\ Seuls les administrateurs pourront éditer ou supprimer ces commentaires.
+
+
+2. Seulement les utilisateurs authentifiés (donc possédant un compte)
+
+
+- Modification de leur mot de passe (en respectant des contraintes).
+- Suppression de leurs comptes utilisateurs.
+- Visualisation de tout les messages postés.
+- Création d'un message ou commentaire.
+- Edition de leurs propres messages ou commentaires.
+- Suppression de leurs propres messages ou commentaires.
+
+
+3. Pour les utilisateurs administrateurs (possédant l'attribut admin)
+
+
+- Affichage/Edition/Suppression de n'importe quel message même s'il n'en est pas propriètaire.
+- Affichage/Edition/Suppression de n'importe quel commentaire même s'il n'en est pas propriètaire.
+
+
+4. Action pour rendre la navigation de l'application facile à utiliser et à comprendre
+
+
+- Affichage des différents posts sur la page d'accueil 
+    --> Le message dont la dernière modification est la plus récente sera affiché en tête de la liste
+    --> Affichage de la date de création du message
+    --> Affichage de la dernière update du message
+    --> Sur la page principale, affichage de 3 icônes qui sont en réalité des liens vers des actions précises : 
+           1. Lors d'un clic sur l'icônes/picto "Loupe" cela affiche le post avec ses commentaires associés
+           2. Lors d'un clic sur le picto "CrayonSurFeuille" cela permet d'éditer le post
+           3. Lors d'un clic sur le picto "CroixRouge" cela permet de supprimer le post (avec une confirmation requise)
+    --> Un simple clic sur le titre du post permet aussi d'accèder à sa visualisation
+- Sur la page visualisation d'un message : 
+    --> Le post est affiché
+    --> La liste des commentaires est affichée
+    --> Affichage du dernier commentaire ajouté/modifié en tête de liste des commentaires d'un message.
+    --> Les utilisateurs authentifiés auront automatiquement leurs adresses email en "author" des commentaires, alors que les utilisateur anonymes auront "Anonymous" en author
+- Un menu de navigation simple d'accès en haut à droite de la page, permet de retourner à la page d'accueil simplement, ou permet aux utilisateurs de s'authentifier ou même de s'inscrire
+
+
+NB : Malheuresement je n'ai pas réussi à faire fonctionner l'AJAX, j'ai pourtant essayé avec insistance pour la création d'un post. Une erreur revenait régulièrement ('gsub` fixnum), et je n'ai pas trouvé de solution, même malgré de nombreuse recherches sur l'ami google.
+     Il y a aussi un problème lors de la désactivation du JavaScript dans le navigateur, seuls quelques liens ne fonctionnent plus, par exemple lorsqu'on clique sur le bouton de suppresion, l'action "show" est exécutée. J'ai trouvé sur google de nombreux post en ce qui concerne ce problème
+     mais la seule solution qui me permettait de corriger était de remplacer tous les "link_to" par des "button_to", ce que je n'ai pas fait par manque de temps, et cette solution n'était à mes yeux que "partielle".
+
+
+*--------------------*
+| II. Test du projet |
+*--------------------*
+
+Mise en place des tables de la Base de Données (en devéloppement et en test)
+- rake db:migrate
+- RAILS_ENV=test rake db:migrate 
+
+Exécution de tous les tests => 109 tests OK
+- rspec (à la racine du projet)
+
+Preuve :
+gautier@gautier-laptop:~/Bureau/3A/TechnoInternet/Projet/blogvrai$ rspec 
+.......................................................................................**.................***
+_
+_
+_
+Finished in 65.21 seconds
+109 examples, 0 failures, 5 pending
+gautier@gautier-laptop:~/Bureau/3A/TechnoInternet/Projet/blogvrai$ date
+samedi 31 décembre 2011, 13:16:53 (UTC+0100)
+
+
+Visualisation graphique de la page d'accueil du blog via le navigateur Web (fonctionne sous Mozilla Firefox, Internet Explorer et Google Chrome, Safari)
+- http://localhost:3000/posts
+
+
+*-------------------------*
+| III. Quelques scénarios |
+*-------------------------*
+
+
+1. Utilisateur non loggé
+
+
+PAGE INDEX (http://localhost:3000/posts) :
+- La liste des posts par ordre de modifcation. Menu d'icones pour les différentes actions.
+- Cliquer sur un des posts (soit en cliquant sur le titre du post, soit sur la loupe).
+- Possibilité de s'authentifier ou de créer un compte utilisateur, grâce au menu en haut à droite de la page.
+
+PAGE SHOW (http://localhost:3000/posts/idpost) :
+- Le post est affiché.
+- La liste des commentaires associés à ce post sont affichés.
+- Il est possible de créer un nouveau commentaire en cliquant sur "Create a new Comment".
+- Il est possible de revenir à la page d'accueil en cliquant sur le lien "Back".
+
+PAGE CREATION COMMENTAIRES (http://localhost:3000/posts/idpost/comments/new) :
+- Si on clique sur "Create Comment" sans remplir le champs body on obtient l'erreur : "Body can not be blank or Body too long"
+- Si on clique sur "Create Comment" en remplissant le body avec plus de 450 caractères => erreur, ce n'est pas possible
+- Après avoir rempli le champ body correctement, si l'utilisateur confirme la création du commentaire, ce dernier est affiché juste en dessous du post avec comme author "Anonymous" (car c'est le dernier modifié)
+
+PAGE CREATION UTILISATEUR (http://localhost:3000/users/sign_up) :
+- Cliquer sur "Sign in" en haut à droite de la page
+- Il faut remplir tous les champs en respectant les contraintes (email valide, et mot de passe de 6 caractères au minimum)
+- Cliquer sur "Sign up" --> une redirection doit être faite vers la page d'acceuil avec un message flash disant : "Welcome! You have signed up successfully"
+
+
+2. Utilisateur loggé
+
+
+PAGE D'AUTHENTIFICATION (http://localhost:3000/users/sign_in) :
+- Cliquer sur le bouton "Sign in".
+- Remplissez les champs suivants : email, password. (Les comptes existants seront donnés à la fin de cette page).
+- Cliquer enfin sur "Sign in".
+- Une redirection est faite vers la page d'accueil avec un message flash : "Signed in successfully", et 2 nouvelles options sont disponibles "Settings" (pour changer de mot de passe) et "Sign out" (pour se déconnecter).
+
+MODIFICATION DU COMPTE (http://localhost:3000/users/edit) :
+- Si l'utilisateur veut changer son mot de passe, il doit correctement remplir les champs Email,Password, Password confirmation, Current password.
+- Cliquer sur update, une redirection vers la page d'acceuil est faite avec un message flash "You updated your account successfully."
+- Si l'utilisateur veut changer d'adresse email, il suffit donc de modifier le champs email, en remplaçant son adresse mail par la nouvelle souhaitée, en plus du champs Current password.
+- Cliquer sur update, une redirection vers la page d'acceuil est faite avec un message flash "You updated your account successfully.". Et l'utilisateur peut voir que son adresse email a changé en regardant l'adresse sous laquelle il est loggé en haut de la page.
+
+AJOUT D'UN NOUVEAU POST (http://localhost:3000/posts/new) :
+- Cliquer sur le bouton "Create a new Post" en bas de la page d'accueil. Si vous n'êtes pas loggé une redirection est faite vers la page de connexion.
+- Remplissez les champs "title" et "body" en respectant les contraintes imposées et cliquez sur "Create Post".
+- Vous êtes redirigés sur la page d'accueil et votre Post apparait.
+- Vous avez maintenant la possibilité de l'afficher/l'éditer ou de le supprimer.
+
+MODIFCATION D'UN POST (http://localhost:3000/posts/edit/idpost) :
+- Modifier le post en cliquant sur l'icone du "crayonsurpapier". Après avoir validé, si les modifications apportées correspondent aux différentes contraintes, alors vous êtes redirigés vers la page affichage du post avec un message flash "Post was successfully updated.".
+
+SUPPRESSION D'UN POST
+- Supprimer le post que vous venez de créer en cliquant sur le l'icone "croixrouge".
+- Confirmez la suppression du post en cliquant sur OK lors de l'affichage du message de confirmation. Le message n'apparaît plus dans la liste des messages.
+
+PAGE CREATION COMMENTAIRES (http://localhost:3000/posts/idpost/comments/new) :
+- Si on clique sur "Create Comment" sans remplir le champs body on obtient l'erreur "Body can not be blank or Body too long"
+- Si on clique sur "Create Comment" en remplissant le body avec plus de 450 caractères => erreur "Body can not be blank or Body too long".
+- Après avoir rempli le champ body correctement, si l'utilisateur confirme la création du commentaire, ce dernier est affiché juste en dessous du post (car c'est le dernier modifié) avec comme author son adresse EMAIL.
+
+MODIFCATION D'UN COMMENTAIRE (http://localhost:3000/posts/idpost/comments/edit/idcomment) :
+- Cliquer sur l'icone "crayonsurpapier" d'un commentaire dont l'utilisateur est propriètaire.
+- L'utilisateur peut alors apporter des modifications à son commentaire avant de cliquer sur "Update Comment", une redirection vers la page de visualisation du post est faite avec un message flash "Comment was successfully updated.".
+
+SUPPRESSION D'UN COMMENTAIRE :
+- Supprimer le commentaire dont vous êtez l'author en cliquant sur le l'icone "croixrouge".
+- Confirmer la suppression du commentaire en cliquant sur OK lors de l'affichage du message de confirmation. Le commentaire n'apparaît plus dans la liste des commentaires.
+
+
+3. Utilisateur admin
+
+
+AJOUT/MODIFICATION/SUPPRESSION D'UN POST OU COMMENTAIRE : 
+- L'utilisateur admin peut effectuer toutes ces actions même si il n'est pas propriètaire des posts/commentaires.
+
+
+*------------------------*
+| IV. Détails techniques |
+*------------------------*
+
+
+L'implémentation des posts et commentaires ont été réalisés grâce aux méthodes agiles, c'est à dire en écrivant d'abord les tests avant d'écrire le code.
+L'authentification a été réalisée grâce à la solution Devise (basé sur Rack, respectant l'architecture MVC).
+Le privilège "administrateur" a été implémenté par le biais d'un attribut booléen admin dans le modèle User.
+L'argument default => false à la fonction add_column spécifie que les utilisateurs ne seront pas des administrateurs par défaut.
+
+Pour tester ou passer un utilisateur en administrateur il suffit :
+$ rails console
+>> user = User.first # ou user = User.find_by_email("adresse@email.rechercher")
+>> user.admin? # Utilisateur admin ?
+=> false # Non pas admin
+>> user.toggle!(:admin) # Passage de l'utilisateur en admin ou lui enlever ce privilège
+=> true # Ok
+>> user.admin? # Utilisateur admin ?
+=> true # Oui 
+
+
+*------------*
+| V. Comptes |
+*------------*
+
+
+Utilisateur : 
+Email : gautier@aol.com | Password Azerty
+Email : titi@aol.Com    | Password Azerty
+
+L'utilisateur gautier@aol.com est le seul administrateur il a donc tous les droits sur les commentaires/posts.
